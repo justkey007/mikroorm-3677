@@ -1,10 +1,11 @@
 import { Account } from '@app/entities/account.entity';
 import { Customer } from '@app/entities/customer.entity';
 import { EntityData, GetRepository } from '@mikro-orm/core';
-import { EntityRepository, MikroORM } from '@mikro-orm/postgresql';
+import { EntityManager, EntityRepository, MikroORM } from '@mikro-orm/postgresql';
 
 describe('Customer (e2e)', () => {
   let orm: MikroORM;
+  let em: EntityManager;
   let accountsRepository: GetRepository<Customer, EntityRepository<Account>>;
   let customersRepository: GetRepository<Account, EntityRepository<Customer>>;
 
@@ -19,7 +20,7 @@ describe('Customer (e2e)', () => {
       entities: [Account, Customer]
     });
 
-    const em = orm.em.fork();
+    em = orm.em.fork();
     accountsRepository = em.getRepository(Account);
     customersRepository = em.getRepository(Customer);
 
@@ -30,7 +31,7 @@ describe('Customer (e2e)', () => {
 
   const createAccount = async (data: EntityData<Account>) => {
     const account = accountsRepository.create(data);
-    await accountsRepository.nativeInsert(account);
+    await em.upsert(account);
     return account;
   };
 
