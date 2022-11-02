@@ -1,0 +1,57 @@
+# dependencies
+node_modules
+
+# packages management
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
+# env
+.env
+
+# OS X
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+.Spotlight-V100
+.Trashes
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+
+# IDE
+.idea
+.awcache
+.vscode
+
+# Logs and databases
+.tmp
+*.log
+*.sql
+*.sqlite
+*.sqlite3
+
+# misc
+npm-debug.log
+temp
+migrations
+*.bak
+
+# example
+/quick-start
+
+# tests
+coverage
+.nyc_output
+
+# dist
+dist
